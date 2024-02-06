@@ -8,4 +8,8 @@ class utilFunction {
           builder: (context) => widget,
         ));
   }
+
+  static void goback(BuildContext context) {
+    Navigator.of(context).pop();
+  }
 }
