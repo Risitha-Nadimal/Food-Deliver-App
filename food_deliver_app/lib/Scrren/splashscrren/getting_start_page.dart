@@ -13,6 +13,12 @@ class GettingStart extends StatefulWidget {
 
 class _GettingStartState extends State<GettingStart> {
   CarouselController buttonCarouselController = CarouselController();
+  List list = [
+    1,
+    2,
+    3,
+  ];
+  int _current = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,19 +28,60 @@ class _GettingStartState extends State<GettingStart> {
         children: [
           CarouselSlider(
             options: CarouselOptions(
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    _current = index;
+                  });
+                },
+                // autoPlay: true,
                 height: utilFunction.mediaquary(context).height / 2),
-            items: [1, 2, 3, 4, 5].map((i) {
+            items: list.map((i) {
               return Builder(
                 builder: (BuildContext context) {
-                  return Container(
-                      width: MediaQuery.of(context).size.width,
-                      margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                      decoration: const BoxDecoration(color: Colors.amber),
-                      child: Text(
-                        'text $i',
-                        style: const TextStyle(fontSize: 16.0),
-                      ));
+                  return SizedBox(
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          Constans.imageassest("popcorn.png"),
+                          scale: 3,
+                        ),
+                        const SizedBox(height: 37),
+                        const Text(
+                          "Choose a Tasty Dish",
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.w500),
+                        ),
+                        const SizedBox(height: 5),
+                        const Text(
+                          "Order anithing you want from \n Favorite resturant ",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                  );
                 },
+              );
+            }).toList(),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: list.asMap().entries.map((entry) {
+              return GestureDetector(
+                onTap: () => buttonCarouselController.animateToPage(entry.key),
+                child: Container(
+                  width: 12.0,
+                  height: 12.0,
+                  margin: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 4.0),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: (Theme.of(context).brightness == Brightness.dark
+                              ? Colors.white
+                              : Colors.black)
+                          .withOpacity(_current == entry.key ? 0.9 : 0.4)),
+                ),
               );
             }).toList(),
           ),
