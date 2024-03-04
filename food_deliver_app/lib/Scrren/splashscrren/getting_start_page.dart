@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:food_deliver_app/Scrren/loginscreen/login_screnn.dart';
 import 'package:food_deliver_app/util/app_colors.dart';
 import 'package:food_deliver_app/util/app_function.dart';
 import 'package:food_deliver_app/util/conston.dart';
@@ -22,12 +23,12 @@ class _GettingStartState extends State<GettingStart> {
         image: "Seek.png",
         text1: "Enjoye the Taste!",
         text2:
-            "Healthy eattings means editing a \nvariety of foods that give you the nutrients you\n need to maintains your health."),
+            "Healthy eattings means editing a \nvariety of foods that give you the \nnutrients you need to maintains\n your health."),
     const SliderItem(
         image: "wallet.png",
         text1: "Easy Paiyment",
         text2:
-            "payment make easy through debit\n card, credit card & more ways to pay for food "),
+            "payment make easy through debit\n card, credit card & more \nways to pay for food "),
   ];
   int _current = 0;
   @override
@@ -152,7 +153,12 @@ class bottomside extends StatelessWidget {
               child: const Text("Next", style: TextStyle(color: kwhite)),
             ),
             TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()));
+                },
                 child: const Text(
                   "Skip",
                   style: TextStyle(color: kblack),
