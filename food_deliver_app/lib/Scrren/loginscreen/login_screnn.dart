@@ -19,7 +19,31 @@ class _LoginPageState extends State<LoginPage> {
       child: Column(
         children: [
           Stack(
-            children: [Image.asset(Constans.imageassest("bottom.png"))],
+            children: [
+              Image.asset(
+                Constans.imageassest("top.png"),
+                width: utilFunction.mediaquary(context).width,
+                fit: BoxFit.fitWidth,
+              ),
+              const Center(
+                child: Column(children: [
+                  Text(
+                    "Login",
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  Text(
+                    "Access Acount",
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400),
+                  )
+                ]),
+              )
+            ],
           )
         ],
       ),
