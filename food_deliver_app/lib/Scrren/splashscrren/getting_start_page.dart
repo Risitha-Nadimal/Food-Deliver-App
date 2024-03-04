@@ -13,10 +13,21 @@ class GettingStart extends StatefulWidget {
 
 class _GettingStartState extends State<GettingStart> {
   CarouselController buttonCarouselController = CarouselController();
-  List list = [
-    1,
-    2,
-    3,
+  List<Widget> list = [
+    const SliderItem(
+        image: "popcorn.png",
+        text1: "Chose a test Dish",
+        text2: "Order anithig you want\n Favorte resturent."),
+    const SliderItem(
+        image: "Seek.png",
+        text1: "Enjoye the Taste!",
+        text2:
+            "Healthy eattings means editing a \nvariety of foods that give you the nutrients you\n need to maintains your health."),
+    const SliderItem(
+        image: "wallet.png",
+        text1: "Easy Paiyment",
+        text2:
+            "payment make easy through debit\n card, credit card & more ways to pay for food "),
   ];
   int _current = 0;
   @override
@@ -35,30 +46,13 @@ class _GettingStartState extends State<GettingStart> {
                 },
                 // autoPlay: true,
                 height: utilFunction.mediaquary(context).height / 2),
+            carouselController: buttonCarouselController,
             items: list.map((i) {
               return Builder(
                 builder: (BuildContext context) {
                   return SizedBox(
                     child: Column(
-                      children: [
-                        Image.asset(
-                          Constans.imageassest("popcorn.png"),
-                          scale: 3,
-                        ),
-                        const SizedBox(height: 37),
-                        const Text(
-                          "Choose a Tasty Dish",
-                          style: TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.w500),
-                        ),
-                        const SizedBox(height: 5),
-                        const Text(
-                          "Order anithing you want from \n Favorite resturant ",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w500),
-                        ),
-                      ],
+                      children: [i],
                     ),
                   );
                 },
@@ -69,7 +63,7 @@ class _GettingStartState extends State<GettingStart> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: list.asMap().entries.map((entry) {
               return GestureDetector(
-                onTap: () => buttonCarouselController.animateToPage(entry.key),
+                onTap: () => buttonCarouselController.nextPage(),
                 child: Container(
                   width: 12.0,
                   height: 12.0,
@@ -78,58 +72,94 @@ class _GettingStartState extends State<GettingStart> {
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: (Theme.of(context).brightness == Brightness.dark
-                              ? Colors.white
-                              : Colors.black)
-                          .withOpacity(_current == entry.key ? 0.9 : 0.4)),
+                              ? const Color.fromARGB(255, 107, 2, 2)
+                              : const Color.fromARGB(255, 239, 246, 22))
+                          .withOpacity(_current == entry.key ? 0.9 : 0.2)),
                 ),
               );
             }).toList(),
           ),
-          const bottomside(),
+          bottomside(
+            ontap: () => buttonCarouselController.nextPage(),
+          ),
         ],
       ),
     ));
   }
 }
 
-class bottomside extends StatelessWidget {
-  const bottomside({
-    super.key,
-  });
+class SliderItem extends StatelessWidget {
+  const SliderItem(
+      {super.key,
+      required this.image,
+      required this.text1,
+      required this.text2});
+
+  final String image;
+  final String text1;
+  final String text2;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Stack(children: [
+    return Column(
+      children: [
         Image.asset(
-          Constans.imageassest("bottom.png"),
-          width: utilFunction.mediaquary(context).width,
-          fit: BoxFit.fitWidth,
+          Constans.imageassest(image),
+          scale: 3,
         ),
-        Positioned(
-          right: 43,
-          bottom: 39,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                style: const ButtonStyle(
-                    shape: MaterialStatePropertyAll(StadiumBorder()),
-                    backgroundColor:
-                        MaterialStatePropertyAll(Colors.lightBlue)),
-                onPressed: () {},
-                child: const Text("Next", style: TextStyle(color: kwhite)),
-              ),
-              TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "Skip",
-                    style: TextStyle(color: kblack),
-                  ))
-            ],
-          ),
-        )
-      ]),
+        const SizedBox(height: 37),
+        Text(
+          text1,
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+        ),
+        const SizedBox(height: 5),
+        Text(
+          text2,
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+        ),
+      ],
     );
+  }
+}
+
+class bottomside extends StatelessWidget {
+  const bottomside({
+    super.key,
+    required this.ontap,
+  });
+
+  final Function() ontap;
+  @override
+  Widget build(BuildContext context) {
+    return Stack(children: [
+      Image.asset(
+        Constans.imageassest("bottom.png"),
+        width: utilFunction.mediaquary(context).width,
+        fit: BoxFit.fitWidth,
+      ),
+      Positioned(
+        right: 43,
+        bottom: 39,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              style: const ButtonStyle(
+                  shape: MaterialStatePropertyAll(StadiumBorder()),
+                  backgroundColor: MaterialStatePropertyAll(Colors.lightBlue)),
+              onPressed: ontap,
+              child: const Text("Next", style: TextStyle(color: kwhite)),
+            ),
+            TextButton(
+                onPressed: () {},
+                child: const Text(
+                  "Skip",
+                  style: TextStyle(color: kblack),
+                ))
+          ],
+        ),
+      )
+    ]);
   }
 }
