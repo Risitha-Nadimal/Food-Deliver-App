@@ -36,8 +36,9 @@ class _LoginPageState extends State<LoginPage> {
                       Text("Login",
                           style: GoogleFonts.poppins(
                               color: Colors.black,
-                              fontSize: 22,
-                              fontWeight: FontWeight.w600)),
+                              fontSize: 25,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 2)),
                       Text(
                         "Access Acount",
                         style: GoogleFonts.poppins(
@@ -68,8 +69,46 @@ class _LoginPageState extends State<LoginPage> {
                       child: Image.asset(
                         Constans.imageassest("google.png"),
                         scale: 18,
-                      ))
+                      )),
+                  const SizedBox(width: 20),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          elevation: 2,
+                          backgroundColor: Colors.white,
+                          padding: const EdgeInsets.all(5),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30))),
+                      onPressed: () {},
+                      child: Image.asset(
+                        Constans.imageassest("fb.png"),
+                        scale: 85,
+                      )),
                 ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Text(
+                "or login with email",
+                style: GoogleFonts.poppins(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Email",
+                        style: GoogleFonts.poppins(
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ]),
               )
             ],
           ),
