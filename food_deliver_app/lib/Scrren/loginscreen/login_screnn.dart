@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_deliver_app/util/app_function.dart';
 import 'package:food_deliver_app/util/conston.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -25,26 +26,53 @@ class _LoginPageState extends State<LoginPage> {
                 width: utilFunction.mediaquary(context).width,
                 fit: BoxFit.fitWidth,
               ),
-              const Center(
-                child: Column(children: [
-                  Text(
-                    "Login",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  Text(
-                    "Access Acount",
-                    style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400),
-                  )
-                ]),
+              Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(
+                        height: 80,
+                      ),
+                      Text("Login",
+                          style: GoogleFonts.poppins(
+                              color: Colors.black,
+                              fontSize: 22,
+                              fontWeight: FontWeight.w600)),
+                      Text(
+                        "Access Acount",
+                        style: GoogleFonts.poppins(
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400),
+                      )
+                    ]),
               )
             ],
-          )
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          elevation: 2,
+                          backgroundColor: Colors.white,
+                          padding: const EdgeInsets.all(5),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30))),
+                      onPressed: () {},
+                      child: Image.asset(
+                        Constans.imageassest("google.png"),
+                        scale: 18,
+                      ))
+                ],
+              )
+            ],
+          ),
         ],
       ),
     ));
