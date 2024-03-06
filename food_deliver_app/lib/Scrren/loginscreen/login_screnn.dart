@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_deliver_app/component/customtextfield.dart';
 import 'package:food_deliver_app/util/app_function.dart';
 import 'package:food_deliver_app/util/conston.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,6 +12,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  var isObscure = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,6 +110,41 @@ class _LoginPageState extends State<LoginPage> {
                             fontSize: 15,
                             fontWeight: FontWeight.w500),
                       ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      const CustomTextField(),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      Text(
+                        "Password",
+                        style: GoogleFonts.poppins(
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: TextField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                              filled: isObscure,
+                              fillColor: Colors.white,
+                              suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      isObscure = !isObscure;
+                                    });
+                                  },
+                                  icon: Icon(isObscure
+                                      ? Icons.visibility
+                                      : Icons.visibility_off))),
+                        ),
+                      )
                     ]),
               )
             ],
