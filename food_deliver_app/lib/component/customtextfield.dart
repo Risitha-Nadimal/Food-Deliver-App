@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({
+  CustomTextField({
     super.key,
+    this.type,
+    required this.controller,
   });
-
+  TextInputType? type = TextInputType.none;
+  var controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: TextField(
+        keyboardType: type,
         decoration: InputDecoration(
             filled: true,
             fillColor: const Color.fromARGB(255, 255, 255, 255),
