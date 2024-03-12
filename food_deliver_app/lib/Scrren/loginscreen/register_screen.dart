@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:food_deliver_app/component/customtextfield.dart';
 import 'package:food_deliver_app/util/app_function.dart';
@@ -20,6 +21,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _phoneNo = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    bool inputValidation() {
+      var isValid = true;
+      if (_email.text.isEmpty ||
+          _name.text.isEmpty ||
+          _phoneNo.text.isEmpty ||
+          _password.text.isEmpty) {
+        isValid = false;
+      } else if (!EmailValidator.validate(_email.text)) {
+        isValid = false;
+      } else if (_phoneNo.text.length != 10) {
+        isValid = false;
+      } else {
+        isValid = true;
+      }
+
+      return isValid;
+    }
+
     return Scaffold(
         body: SingleChildScrollView(
       child: FadeInRight(
@@ -149,7 +168,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       Center(
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            if (inputValidation()) {
+                              print("Sucsess");
+                            } else {
+                              print("eror");
+                            }
+                          },
                           style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 127, vertical: 15),

@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:food_deliver_app/Scrren/loginscreen/register_screen.dart';
@@ -20,6 +21,19 @@ class _LoginPageState extends State<LoginPage> {
   final _password = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    bool inputValidation() {
+      var isValid = true;
+      if (_email.text.isEmpty && _password.text.isEmpty) {
+        isValid = false;
+      } else if (!EmailValidator.validate(_email.text)) {
+        isValid = false;
+      } else {
+        isValid = true;
+      }
+
+      return isValid;
+    }
+
     return Scaffold(
         body: SingleChildScrollView(
       child: FadeInRight(
@@ -167,7 +181,13 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           Center(
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                if (inputValidation()) {
+                                  print("Sucsess");
+                                } else {
+                                  print("eror");
+                                }
+                              },
                               style: ElevatedButton.styleFrom(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 140, vertical: 15),
