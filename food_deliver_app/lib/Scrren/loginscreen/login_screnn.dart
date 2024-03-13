@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     bool inputValidation() {
       var isValid = true;
-      if (_email.text.isEmpty && _password.text.isEmpty) {
+      if (_email.text.isEmpty || _password.text.isEmpty) {
         isValid = false;
       } else if (!EmailValidator.validate(_email.text)) {
         isValid = false;
