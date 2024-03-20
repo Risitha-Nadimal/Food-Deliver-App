@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:food_deliver_app/component/customtextfield.dart';
+import 'package:food_deliver_app/component/custum_button.dart';
 import 'package:food_deliver_app/util/app_function.dart';
 import 'package:food_deliver_app/util/conston.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -166,27 +167,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       const SizedBox(
                         height: 30,
                       ),
-                      Center(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            if (inputValidation()) {
-                              print("Sucsess");
-                            } else {
-                              print("eror");
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 127, vertical: 15),
-                              backgroundColor: const Color(0xffFFD200),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15))),
-                          child: Text("Register",
-                              style: GoogleFonts.poppins(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600)),
-                        ),
+                      CustomButton(
+                        onTap: () {},
+                        text: "Register",
                       ),
                     ],
                   ))

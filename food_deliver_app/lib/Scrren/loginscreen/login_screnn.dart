@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:food_deliver_app/Scrren/loginscreen/register_screen.dart';
 import 'package:food_deliver_app/component/customtextfield.dart';
+import 'package:food_deliver_app/component/custum_button.dart';
 import 'package:food_deliver_app/util/app_function.dart';
 import 'package:food_deliver_app/util/conston.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -179,27 +180,9 @@ class _LoginPageState extends State<LoginPage> {
                           const SizedBox(
                             height: 30,
                           ),
-                          Center(
-                            child: ElevatedButton(
-                              onPressed: () {
-                                if (inputValidation()) {
-                                  print("Sucsess");
-                                } else {
-                                  print("eror");
-                                }
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 140, vertical: 15),
-                                  backgroundColor: const Color(0xffFFD200),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15))),
-                              child: Text("Sign in",
-                                  style: GoogleFonts.poppins(
-                                      color: Colors.black,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600)),
-                            ),
+                          CustomButton(
+                            onTap: () {},
+                            text: "Sign in",
                           ),
                           const SizedBox(
                             height: 20,
