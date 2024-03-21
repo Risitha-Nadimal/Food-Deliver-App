@@ -1,10 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:food_deliver_app/component/custom_header.dart';
 import 'package:food_deliver_app/component/customtextfield.dart';
 import 'package:food_deliver_app/component/custum_button.dart';
 import 'package:food_deliver_app/util/app_function.dart';
-import 'package:food_deliver_app/util/conston.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -47,37 +47,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
             height: utilFunction.mediaquary(context).height,
             color: const Color(0xffE5E5E5),
             child: Column(children: [
-              Stack(
-                children: [
-                  Image.asset(
-                    Constans.imageassest("top.png"),
-                    width: utilFunction.mediaquary(context).width,
-                    fit: BoxFit.fitWidth,
-                  ),
-                  Center(
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const SizedBox(
-                            height: 80,
-                          ),
-                          Text("Register",
-                              style: GoogleFonts.poppins(
-                                  color: Colors.black,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w600,
-                                  letterSpacing: 2)),
-                          Text(
-                            "Create Acount",
-                            style: GoogleFonts.poppins(
-                                color: Colors.black,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400),
-                          )
-                        ]),
-                  )
-                ],
-              ),
+              const CustomHeader(
+                  image: "top.png",
+                  header: "Register",
+                  tagline: "Create Acount"),
               Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 40, vertical: 5),
@@ -168,7 +141,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         height: 30,
                       ),
                       CustomButton(
-                        onTap: () {},
+                        onTap: () {
+                          if (inputValidation()) {
+                            print("Success");
+                          } else {
+                            print("error");
+                          }
+                        },
                         text: "Register",
                       ),
                     ],

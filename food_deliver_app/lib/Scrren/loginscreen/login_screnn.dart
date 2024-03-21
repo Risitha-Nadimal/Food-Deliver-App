@@ -3,6 +3,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:food_deliver_app/Scrren/loginscreen/register_screen.dart';
+import 'package:food_deliver_app/component/custom_header.dart';
 import 'package:food_deliver_app/component/customtextfield.dart';
 import 'package:food_deliver_app/component/custum_button.dart';
 import 'package:food_deliver_app/util/app_function.dart';
@@ -43,37 +44,8 @@ class _LoginPageState extends State<LoginPage> {
           color: const Color(0xffE5E5E5),
           child: Column(
             children: [
-              Stack(
-                children: [
-                  Image.asset(
-                    Constans.imageassest("top.png"),
-                    width: utilFunction.mediaquary(context).width,
-                    fit: BoxFit.fitWidth,
-                  ),
-                  Center(
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const SizedBox(
-                            height: 80,
-                          ),
-                          Text("Login",
-                              style: GoogleFonts.poppins(
-                                  color: Colors.black,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w600,
-                                  letterSpacing: 2)),
-                          Text(
-                            "Access Acount",
-                            style: GoogleFonts.poppins(
-                                color: Colors.black,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400),
-                          )
-                        ]),
-                  )
-                ],
-              ),
+              const CustomHeader(
+                  image: "top.png", header: "Login", tagline: "Acount"),
               const SizedBox(
                 height: 50,
               ),

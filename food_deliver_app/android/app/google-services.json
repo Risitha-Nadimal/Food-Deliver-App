@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "554928995938",
+    "project_id": "food-app-7bd82",
+    "storage_bucket": "food-app-7bd82.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:554928995938:android:f068d0c024ffdf4aa29b3b",
+        "android_client_info": {
+          "package_name": "com.rnt.food_deliver_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDT51dCehCegJ0UaD8T32Ku3PF5EPowus0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
