@@ -8,12 +8,13 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
   });
   TextInputType? type = TextInputType.none;
-  var controller = TextEditingController();
+  final controller;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: TextField(
+        controller: controller,
         keyboardType: type,
         decoration: InputDecoration(
             filled: true,

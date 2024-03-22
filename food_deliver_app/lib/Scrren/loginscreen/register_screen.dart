@@ -1,5 +1,7 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_deliver_app/component/custom_header.dart';
 import 'package:food_deliver_app/component/customtextfield.dart';
@@ -20,6 +22,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _password = TextEditingController();
   final _name = TextEditingController();
   final _phoneNo = TextEditingController();
+
+  FirebaseAuth auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     bool inputValidation() {
@@ -141,10 +146,64 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         height: 30,
                       ),
                       CustomButton(
-                        onTap: () {
+                        onTap: () async {
                           if (inputValidation()) {
-                            print("Success");
+                            try {
+                              final credential = await FirebaseAuth.instance
+                                  .createUserWithEmailAndPassword(
+                                email: _email.text,
+                                password: _password.text,
+                              );
+                            } on FirebaseAuthException catch (e) {
+                              if (e.code == 'weak-password') {
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.error,
+                                  animType: AnimType.rightSlide,
+                                  title: 'The password provided is too weak.',
+                                  desc: 'Enter strong password.',
+                                  btnCancelOnPress: () {},
+                                  btnOkOnPress: () {},
+                                ).show();
+                                print('The password provided is too weak.');
+                              } else if (e.code == 'email-already-in-use') {
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.error,
+                                  animType: AnimType.rightSlide,
+                                  title:
+                                      'The account already exists for that email.',
+                                  desc: 'Enter the another email.',
+                                  btnCancelOnPress: () {},
+                                  btnOkOnPress: () {},
+                                ).show();
+                                print(
+                                    'The account already exists for that email.');
+                              } else {
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.success,
+                                  animType: AnimType.rightSlide,
+                                  title:
+                                      'The account already exists for that email.',
+                                  desc: 'Enter the another email.',
+                                  btnCancelOnPress: () {},
+                                  btnOkOnPress: () {},
+                                ).show();
+                              }
+                            } catch (e) {
+                              print(e);
+                            }
                           } else {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.error,
+                              animType: AnimType.rightSlide,
+                              title: 'Please enter correct information.',
+                              desc: 'again enter.',
+                              btnCancelOnPress: () {},
+                              btnOkOnPress: () {},
+                            ).show();
                             print("error");
                           }
                         },
