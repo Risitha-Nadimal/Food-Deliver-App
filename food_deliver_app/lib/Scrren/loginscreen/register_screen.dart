@@ -7,6 +7,7 @@ import 'package:food_deliver_app/component/custom_dialog_box.dart';
 import 'package:food_deliver_app/component/custom_header.dart';
 import 'package:food_deliver_app/component/customtextfield.dart';
 import 'package:food_deliver_app/component/custum_button.dart';
+import 'package:food_deliver_app/controller/controller.dart';
 import 'package:food_deliver_app/util/app_function.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -149,40 +150,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomButton(
                         onTap: () async {
                           if (inputValidation()) {
-                            try {
-                              final credential = await FirebaseAuth.instance
-                                  .createUserWithEmailAndPassword(
-                                email: _email.text,
-                                password: _password.text,
-                              );
-                              DialogBox().dialogbox(
-                                context,
-                                DialogType.success,
-                                'User account Created.',
-                                'Congratulation,now you can Login.',
-                              );
-                            } on FirebaseAuthException catch (e) {
-                              if (e.code == 'weak-password') {
-                                DialogBox().dialogbox(
-                                    context,
-                                    DialogType.error,
-                                    'The password provided is too weak.',
-                                    'Enter strong password.');
-
-                                print('The password provided is too weak.');
-                              } else if (e.code == 'email-already-in-use') {
-                                DialogBox().dialogbox(
-                                    context,
-                                    DialogType.error,
-                                    'The account already exists for that email.',
-                                    'Enter the another email.');
-
-                                print(
-                                    'The account already exists for that email.');
-                              } else {}
-                            } catch (e) {
-                              print(e);
-                            }
+                            await AuthController().registerUser(
+                                context, _email.text, _password.text);
                           } else {
                             DialogBox().dialogbox(
                               context,
