@@ -14,7 +14,6 @@ class DialogBox {
       animType: AnimType.rightSlide,
       title: title,
       desc: desc,
-      btnCancelOnPress: () {},
       btnOkOnPress: () {},
     ).show();
   }
