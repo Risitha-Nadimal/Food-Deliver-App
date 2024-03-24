@@ -147,11 +147,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       const SizedBox(
                         height: 30,
                       ),
+
+                      //validation ckeck
                       CustomButton(
                         onTap: () async {
                           if (inputValidation()) {
                             await AuthController().registerUser(
-                                context, _email.text, _password.text);
+                                //await add because it futhure function
+                                context,
+                                _email.text,
+                                _password.text);
                           } else {
                             DialogBox().dialogbox(
                               context,

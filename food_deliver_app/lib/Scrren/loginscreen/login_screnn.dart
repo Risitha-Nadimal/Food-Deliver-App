@@ -1,11 +1,15 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:food_deliver_app/Scrren/loginscreen/register_screen.dart';
+import 'package:food_deliver_app/component/custom_dialog_box.dart';
 import 'package:food_deliver_app/component/custom_header.dart';
 import 'package:food_deliver_app/component/customtextfield.dart';
 import 'package:food_deliver_app/component/custum_button.dart';
+import 'package:food_deliver_app/controller/controller.dart';
 import 'package:food_deliver_app/util/app_function.dart';
 import 'package:food_deliver_app/util/conston.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,6 +25,9 @@ class _LoginPageState extends State<LoginPage> {
   var isObscure = true;
   final _email = TextEditingController();
   final _password = TextEditingController();
+
+  FirebaseAuth auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     bool inputValidation() {
@@ -153,7 +160,19 @@ class _LoginPageState extends State<LoginPage> {
                             height: 30,
                           ),
                           CustomButton(
-                            onTap: () {},
+                            onTap: () async {
+                              if (inputValidation()) {
+                                AuthController().loginUser(
+                                    context, _email.text, _password.text);
+                              } else {
+                                DialogBox().dialogbox(
+                                  context,
+                                  DialogType.error,
+                                  'Please enter correct information.',
+                                  'again enter.',
+                                );
+                              }
+                            },
                             text: "Sign in",
                           ),
                           const SizedBox(

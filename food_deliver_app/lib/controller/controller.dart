@@ -1,7 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
+import 'package:food_deliver_app/Scrren/homescrren/homepage.dart';
 import 'package:food_deliver_app/component/custom_dialog_box.dart';
+import 'package:food_deliver_app/util/app_function.dart';
 
 class AuthController {
   //Firebased auth instanse created
@@ -39,6 +43,34 @@ class AuthController {
       } else {}
     } catch (e) {
       print(e);
+    }
+  }
+
+  //user login function
+  Future<void> loginUser(
+      BuildContext context, String email, String password) async {
+    try {
+      final credential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      if (credential.user != null) {
+        utilFunction.navigatorto(context, const HomePage());
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        DialogBox().dialogbox(
+          context,
+          DialogType.error,
+          'No user found for that email.',
+          'Please Enter valid email',
+        );
+      } else if (e.code == 'wrong-password') {
+        DialogBox().dialogbox(
+          context,
+          DialogType.error,
+          'Wrong password provided for that user.',
+          'Please Enter valid passord',
+        );
+      }
     }
   }
 }
