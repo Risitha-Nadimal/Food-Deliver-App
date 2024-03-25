@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food_deliver_app/Scrren/homescrren/homepage.dart';
 import 'package:food_deliver_app/component/custom_dialog_box.dart';
+import 'package:food_deliver_app/controller/db_controller.dart';
 import 'package:food_deliver_app/util/app_function.dart';
 
 class AuthController {
@@ -12,14 +13,17 @@ class AuthController {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   //user registation function
-  Future<void> registerUser(
-      BuildContext context, String email, String Password) async {
+  Future<void> registerUser(BuildContext context, String email, String password,
+      String name, String phoneNO) async {
     try {
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      final credential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
         email: email,
-        password: Password,
-      );
+        password: password,
+      )
+          .whenComplete(() {
+        DataBaseControoler().saveUserInformation(name, email, phoneNO);
+      });
       DialogBox().dialogbox(
         context,
         DialogType.success,

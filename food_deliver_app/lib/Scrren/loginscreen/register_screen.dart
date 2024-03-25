@@ -156,7 +156,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 //await add because it futhure function
                                 context,
                                 _email.text,
-                                _password.text);
+                                _password.text,
+                                _name.text,
+                                _phoneNo.text);
                           } else {
                             DialogBox().dialogbox(
                               context,
