@@ -16,14 +16,15 @@ class AuthController {
   Future<void> registerUser(BuildContext context, String email, String password,
       String name, String phoneNO) async {
     try {
-      final credential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
+      final credential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
-      )
-          .whenComplete(() {
+      );
+      if (credential.user!.uid.isEmpty) {
         DataBaseControoler().saveUserInformation(name, email, phoneNO);
-      });
+      }
+
       DialogBox().dialogbox(
         context,
         DialogType.success,
