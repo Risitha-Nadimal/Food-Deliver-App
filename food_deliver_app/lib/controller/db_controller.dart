@@ -12,13 +12,17 @@ class DataBaseControoler {
     String name,
     String email,
     String phoneNo,
+    String uid,
   ) {
     // Call the user's CollectionReference to add a new user
+
     return users
-        .add({
+        .doc(uid)
+        .set({
           'name': name,
           'email': email,
           'phoneNo': phoneNo,
+          'uid': uid,
         })
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));

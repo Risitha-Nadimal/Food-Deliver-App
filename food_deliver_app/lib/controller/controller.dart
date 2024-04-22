@@ -22,7 +22,8 @@ class AuthController {
         password: password,
       );
       if (credential.user!.uid.isEmpty) {
-        DataBaseControoler().saveUserInformation(name, email, phoneNO);
+        DataBaseControoler()
+            .saveUserInformation(name, email, phoneNO, credential.user!.uid);
       }
 
       DialogBox().dialogbox(
