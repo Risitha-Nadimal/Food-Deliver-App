@@ -18,6 +18,8 @@ class RegisterScreen extends StatefulWidget {
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
+bool isloding = false;
+
 class _RegisterScreenState extends State<RegisterScreen> {
   var isObscure = true;
   final _email = TextEditingController();
@@ -149,29 +151,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
 
                       //validation ckeck
-                      CustomButton(
-                        onTap: () async {
-                          if (inputValidation()) {
-                            await AuthController().registerUser(
-                                //await add because it futhure function
-                                context,
-                                _email.text,
-                                _password.text,
-                                _name.text,
-                                _phoneNo.text);
-                          } else {
-                            DialogBox().dialogbox(
-                              context,
-                              DialogType.error,
-                              'Please enter correct information.',
-                              'again enter.',
-                            );
+                      isloding
+                          ? const Center(child: CircularProgressIndicator())
+                          : CustomButton(
+                              onTap: () async {
+                                if (inputValidation()) {
+                                  setState(() {
+                                    isloding = true;
+                                  });
 
-                            print("error");
-                          }
-                        },
-                        text: "Register",
-                      ),
+                                  await AuthController().registerUser(
+                                      //await add because it futhure function
+                                      context,
+                                      _email.text,
+                                      _password.text,
+                                      _name.text,
+                                      _phoneNo.text);
+
+                                  setState(() {
+                                    isloding = false;
+                                  });
+                                } else {
+                                  DialogBox().dialogbox(
+                                    context,
+                                    DialogType.error,
+                                    'Please enter correct information.',
+                                    'again enter.',
+                                  );
+
+                                  print("error");
+                                }
+                              },
+                              text: "Register",
+                            ),
                     ],
                   ))
             ])),

@@ -160,22 +160,32 @@ class _LoginPageState extends State<LoginPage> {
                           const SizedBox(
                             height: 30,
                           ),
-                          CustomButton(
-                            onTap: () async {
-                              if (inputValidation()) {
-                                AuthController().loginUser(
-                                    context, _email.text, _password.text);
-                              } else {
-                                DialogBox().dialogbox(
-                                  context,
-                                  DialogType.error,
-                                  'Please enter correct information.',
-                                  'again enter.',
-                                );
-                              }
-                            },
-                            text: "Sign in",
-                          ),
+                          isloding
+                              ? const Center(child: CircularProgressIndicator())
+                              : CustomButton(
+                                  onTap: () async {
+                                    if (inputValidation()) {
+                                      setState(() {
+                                        isloding = true;
+                                      });
+
+                                      AuthController().loginUser(
+                                          context, _email.text, _password.text);
+
+                                      setState(() {
+                                        isloding = false;
+                                      });
+                                    } else {
+                                      DialogBox().dialogbox(
+                                        context,
+                                        DialogType.error,
+                                        'Please enter correct information.',
+                                        'again enter.',
+                                      );
+                                    }
+                                  },
+                                  text: "Sign in",
+                                ),
                           const SizedBox(
                             height: 20,
                           ),
