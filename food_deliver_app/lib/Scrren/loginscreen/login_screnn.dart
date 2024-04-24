@@ -27,6 +27,7 @@ class _LoginPageState extends State<LoginPage> {
   final _password = TextEditingController();
 
   FirebaseAuth auth = FirebaseAuth.instance;
+  bool isloding = false;
 
   @override
   Widget build(BuildContext context) {
