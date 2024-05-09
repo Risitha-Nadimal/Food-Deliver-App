@@ -5,6 +5,7 @@ import 'package:food_deliver_app/component/custom_dialog_box.dart';
 import 'package:food_deliver_app/component/custom_header.dart';
 import 'package:food_deliver_app/component/customtextfield.dart';
 import 'package:food_deliver_app/component/custum_button.dart';
+import 'package:food_deliver_app/controller/controller.dart';
 import 'package:food_deliver_app/util/app_function.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -60,6 +61,9 @@ class _FrogertPasswortScrrenState extends State<FrogertPasswortScrren> {
                                     setState(() {
                                       isloding = true;
                                     });
+                                    await AuthController()
+                                        .sendPasswordResertEmail(
+                                            context, _email.text);
 
                                     setState(() {
                                       isloding = false;
