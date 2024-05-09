@@ -4,6 +4,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:food_deliver_app/Scrren/loginscreen/frogert_password_screen.dart';
 import 'package:food_deliver_app/Scrren/loginscreen/register_screen.dart';
 import 'package:food_deliver_app/component/custom_dialog_box.dart';
 import 'package:food_deliver_app/component/custom_header.dart';
@@ -210,7 +211,20 @@ class _LoginPageState extends State<LoginPage> {
                                           context, const RegisterScreen());
                                     })
                             ])),
-                          )
+                          ),
+                          const SizedBox(height: 5),
+                          GestureDetector(
+                            child: const Center(
+                                child: Text("Frogert Password?",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold))),
+                            onTap: () {
+                              utilFunction.navigatorto(
+                                  context, const FrogertPasswortScrren());
+                            },
+                          ),
                         ]),
                   )
                 ],
