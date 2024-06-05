@@ -5,10 +5,14 @@ class CustomTextField extends StatelessWidget {
   CustomTextField({
     super.key,
     this.type,
-    required this.controller,
+    this.controller,
+    this.hintText,
+    this.prefix,
   });
   TextInputType? type = TextInputType.none;
   final controller;
+  final String? hintText;
+  final Widget? prefix;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -19,6 +23,8 @@ class CustomTextField extends StatelessWidget {
         decoration: InputDecoration(
             filled: true,
             fillColor: const Color.fromARGB(255, 255, 255, 255),
+            hintText: hintText,
+            prefixIcon: prefix,
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: const BorderSide(color: Colors.white)),
