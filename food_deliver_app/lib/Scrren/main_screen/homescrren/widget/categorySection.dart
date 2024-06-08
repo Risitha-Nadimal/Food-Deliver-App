@@ -22,10 +22,10 @@ class _CategorySectionState extends State<CategorySection> {
         physics: BouncingScrollPhysics(),
         child: Row(
           children: [
-            CategoryTile(),
-            CategoryTile(),
-            CategoryTile(),
-            CategoryTile(),
+            CategoryTile(icon: "fast-food.png", categoryName: "All"),
+            CategoryTile(icon: "pizza.png", categoryName: "Pizza"),
+            CategoryTile(icon: "drink.png", categoryName: "Beverages"),
+            CategoryTile(icon: "noodles.png", categoryName: "Asian"),
           ],
         ),
       ),
@@ -34,9 +34,11 @@ class _CategorySectionState extends State<CategorySection> {
 }
 
 class CategoryTile extends StatefulWidget {
-  const CategoryTile({
-    super.key,
-  });
+  const CategoryTile(
+      {super.key, required this.icon, required this.categoryName});
+
+  final String icon;
+  final String categoryName;
 
   @override
   State<CategoryTile> createState() => _CategoryTileState();
@@ -64,12 +66,12 @@ class _CategoryTileState extends State<CategoryTile> {
                 color: isSelected ? koorange : kwhite,
                 borderRadius: BorderRadius.circular(15),
               ),
-              child: Image.asset(Constans.iconassest("fast-food.png")),
+              child: Image.asset(Constans.iconassest(widget.icon)),
             ),
             const SizedBox(
               width: 4,
             ),
-            const CustomText(text: "All")
+            CustomText(text: widget.categoryName)
           ],
         ),
       ),
