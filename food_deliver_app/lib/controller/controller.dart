@@ -3,7 +3,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
-import 'package:food_deliver_app/Scrren/homescrren/homepage.dart';
+import 'package:food_deliver_app/Scrren/main_screen/homescrren/homepage.dart';
 import 'package:food_deliver_app/component/custom_dialog_box.dart';
 import 'package:food_deliver_app/controller/db_controller.dart';
 import 'package:food_deliver_app/util/app_function.dart';

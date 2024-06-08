@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_deliver_app/Scrren/homescrren/widget/categorySection.dart';
-import 'package:food_deliver_app/Scrren/homescrren/widget/chose_location_section.dart';
 import 'package:food_deliver_app/Scrren/main_screen/homescrren/widget/categorySection.dart';
 import 'package:food_deliver_app/Scrren/main_screen/homescrren/widget/chose_location_section.dart';
 import 'package:food_deliver_app/Scrren/main_screen/homescrren/widget/nearest_resturant_section.dart';
@@ -62,7 +60,7 @@ class BottomSection extends StatelessWidget {
             SizedBox(height: 11),
             NearestResturantSection(),
             SizedBox(height: 26),
-            CustomTitle(text: "Popular Resturant"),
+            CustomTitle(text: "Populara Resturant"),
             SizedBox(height: 11),
             NearestResturantSection(),
           ],
