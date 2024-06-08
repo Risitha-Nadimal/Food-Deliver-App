@@ -25,7 +25,9 @@ class _MainscreenState extends State<Mainscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens.elementAt(_currentIndex),
+      backgroundColor: mainBg,
+      body:
+          _screens.elementAt(_currentIndex), // using index value nevigate page
       bottomNavigationBar: Container(
         height: 90,
         color: kwhite,
@@ -94,7 +96,9 @@ class BottomNavTile extends StatelessWidget {
             width: 50,
             height: 50,
             decoration: BoxDecoration(
-                color: primaryColor, borderRadius: BorderRadius.circular(15)),
+              color: isselected ? primaryColor : kwhite,
+              borderRadius: BorderRadius.circular(15),
+            ),
             child: Image.asset(Constans.iconassest(icon))));
   }
 }

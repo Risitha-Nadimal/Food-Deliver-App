@@ -3,7 +3,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
-import 'package:food_deliver_app/Scrren/main_screen/homescrren/homepage.dart';
+import 'package:food_deliver_app/Scrren/main_screen/mainscreen.dart';
 import 'package:food_deliver_app/component/custom_dialog_box.dart';
 import 'package:food_deliver_app/controller/db_controller.dart';
 import 'package:food_deliver_app/util/app_function.dart';
@@ -59,7 +59,7 @@ class AuthController {
       final credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
       if (credential.user != null) {
-        utilFunction.navigatorto(context, const HomePage());
+        utilFunction.navigatorto(context, const Mainscreen());
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
