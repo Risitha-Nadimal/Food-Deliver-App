@@ -60,7 +60,7 @@ class _MainscreenState extends State<Mainscreen> {
               },
             ),
             BottomNavTile(
-              icon: 'profile.png',
+              icon: 'user.png',
               isselected: _currentIndex == 3,
               ontap: () {
                 setState(() {
