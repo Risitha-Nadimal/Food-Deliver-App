@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_deliver_app/Scrren/main_screen/resturentdetails_screen/resturent_details_screen.dart';
 import 'package:food_deliver_app/component/custom_image.dart';
 import 'package:food_deliver_app/component/custom_text.dart';
 import 'package:food_deliver_app/util/app_colors.dart';
+import 'package:food_deliver_app/util/app_function.dart';
 
 class NearestResturantSection extends StatelessWidget {
   const NearestResturantSection({
@@ -37,69 +39,73 @@ class ResturentTile extends StatelessWidget {
   final bool isOffer;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-            margin: const EdgeInsets.only(right: 20),
-            height: 120,
-            width: 120,
-            // can give any to border redius
-            child: Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: const CustomNetworkImage(
-                    url:
-                        'https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg',
+    return InkWell(
+      onTap: () =>
+          utilFunction.navigatorto(context, const RestaruntDetailsScreen()),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+              margin: const EdgeInsets.only(right: 20),
+              height: 120,
+              width: 120,
+              // can give any to border redius
+              child: Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: const CustomNetworkImage(
+                      url:
+                          'https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg',
+                    ),
                   ),
-                ),
-                // use Align widget alignment to conatainer
+                  // use Align widget alignment to conatainer
 
-                isOffer ? const OfferTag() : Container()
-              ],
-            )),
-        const SizedBox(height: 5),
-        const CustomText(
-          text: 'westway',
-          fontSize: 16,
-        ),
-        const SizedBox(
-          width: 120,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  Icon(
-                    Icons.star,
-                    color: primaryColor,
-                    size: 15,
-                  ),
-                  CustomText(
-                    text: '4.6',
-                    fontSize: 12,
-                  )
+                  isOffer ? const OfferTag() : Container()
                 ],
-              ),
-              Row(
-                children: [
-                  Icon(
-                    Icons.timer,
-                    color: grayColor,
-                    size: 15,
-                  ),
-                  SizedBox(width: 3),
-                  CustomText(
-                    text: '15 min',
-                    fontSize: 12,
-                  )
-                ],
-              ),
-            ],
+              )),
+          const SizedBox(height: 5),
+          const CustomText(
+            text: 'westway',
+            fontSize: 16,
           ),
-        )
-      ],
+          const SizedBox(
+            width: 120,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.star,
+                      color: primaryColor,
+                      size: 15,
+                    ),
+                    CustomText(
+                      text: '4.6',
+                      fontSize: 12,
+                    )
+                  ],
+                ),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.timer,
+                      color: grayColor,
+                      size: 15,
+                    ),
+                    SizedBox(width: 3),
+                    CustomText(
+                      text: '15 min',
+                      fontSize: 12,
+                    )
+                  ],
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }
