@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_deliver_app/Scrren/main_screen/resturentdetails_screen/resturent_details_screen.dart';
-import 'package:food_deliver_app/component/custom_image.dart';
 import 'package:food_deliver_app/component/custom_text.dart';
+import 'package:food_deliver_app/component/image_title.dart';
 import 'package:food_deliver_app/util/app_colors.dart';
 import 'package:food_deliver_app/util/app_function.dart';
 
@@ -45,25 +45,7 @@ class ResturentTile extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-              margin: const EdgeInsets.only(right: 20),
-              height: 120,
-              width: 120,
-              // can give any to border redius
-              child: Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: const CustomNetworkImage(
-                      url:
-                          'https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg',
-                    ),
-                  ),
-                  // use Align widget alignment to conatainer
-
-                  isOffer ? const OfferTag() : Container()
-                ],
-              )),
+          ImageTile(isOffer: isOffer),
           const SizedBox(height: 5),
           const CustomText(
             text: 'westway',
