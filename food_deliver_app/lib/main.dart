@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:food_deliver_app/Scrren/main_screen/mainscreen.dart';
+import 'package:food_deliver_app/Scrren/splashscrren/splashscreen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Food Deliver App',
       theme: ThemeData(),
       debugShowCheckedModeBanner: false,
-      home: const Mainscreen(),
+      home: const SplashScrren(),
     );
   }
 }

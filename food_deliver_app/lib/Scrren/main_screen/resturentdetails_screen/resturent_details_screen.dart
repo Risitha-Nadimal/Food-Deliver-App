@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:food_deliver_app/Scrren/loginscreen/resturantmenu/resturant_menu.dart';
 import 'package:food_deliver_app/component/appbar_button.dart';
 import 'package:food_deliver_app/component/custom_image.dart';
 import 'package:food_deliver_app/component/custom_text.dart';
 import 'package:food_deliver_app/component/custom_title.dart';
 import 'package:food_deliver_app/component/product_card.dart';
 import 'package:food_deliver_app/util/app_colors.dart';
+import 'package:food_deliver_app/util/app_function.dart';
 
 class RestaruntDetailsScreen extends StatefulWidget {
   const RestaruntDetailsScreen({super.key});
@@ -30,6 +32,23 @@ class _RestaruntDetailsScreenState extends State<RestaruntDetailsScreen> {
           const CustomTitle(text: 'Best Product'),
           const SizedBox(height: 12),
           const ProductListSection(),
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.only(right: 40, bottom: 10, left: 10),
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: GestureDetector(
+                onTap: () {
+                  utilFunction.navigatorto(context, const ResturantMenu());
+                },
+                child: const CustomText(
+                  text: 'See our menu',
+                  color: koorange,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          )
         ],
       ),
     ));

@@ -62,7 +62,7 @@ class _FrogertPasswortScrrenState extends State<FrogertPasswortScrren> {
                                       isloding = true;
                                     });
                                     await AuthController()
-                                        .sendPasswordResertEmail(
+                                        .sendPasswordResetEmail(
                                             context, _email.text);
 
                                     setState(() {
